@@ -39,6 +39,7 @@ namespace shinny_ssg
         }
         public string getPage()
         {
+            //Creates a new file, write the contents to the file, and then closes the file. If the target file already exists, it is overwritten
             return $"<html> <head>{head}</head> <body>{body}</body> </html>";
         }
     }

@@ -30,7 +30,6 @@ namespace shinny_ssg
             var newPath = $"{folder}\\{name.Replace("txt","html")}";
             Console.WriteLine(newPath);
             File.WriteAllText(newPath , page.getPage());
-            
         }
     }
 }

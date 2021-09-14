@@ -5,9 +5,30 @@ namespace shinny_ssg
 {
     class Program
     {
+        //recursive method
+        private void createFolder(string parent, string des)
+        {
+            DirectoryInfo dSource = new DirectoryInfo(parent);
+            DirectoryInfo dDestination = new DirectoryInfo(des);
+            //Getting only text files
+            foreach (FileInfo f in dSource.GetFiles("*.txt"))
+            {
+                var src = $"{dSource.FullName}/{f.Name}";
+                FileText temp = new FileText(src, des);
+                temp.saveFile();
+                Console.WriteLine(src);
+            }
+            //check all the folder
+            foreach (DirectoryInfo subDir in dSource.GetDirectories())
+            {
+                var name = subDir.Name;
+                var newdir = dDestination.CreateSubdirectory($"{name}");
+                createFolder(subDir.ToString(), newdir.FullName);
+            }
+        }
         static void Main(string[] args)
         {
-
+            Program p = new Program();
             string DESTINATION = @"C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\dist";
             //initialize new CLI application
             var app= new CommandLineApplication<Program>();
@@ -29,8 +50,7 @@ namespace shinny_ssg
                     temp.saveFile();
                 }
                 else if(Directory.Exists(inputname)){
-                    Subfolder folder = new Subfolder(inputname);
-                    folder.createFolder(inputname, DESTINATION);
+                     p.createFolder(inputname, DESTINATION);
                 }else
                 {
 
@@ -40,5 +60,8 @@ namespace shinny_ssg
 
             app.Execute(args);
         }
+    
+    
+    
     }
 }

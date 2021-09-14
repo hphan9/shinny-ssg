@@ -21,17 +21,18 @@ namespace shinny_ssg
             //Getting only text files
             foreach(FileInfo f in dSource.GetFiles("*.txt") )
             {
-                var src = $"{dSource.ToString()}/{f.ToString()}";
+                var src = $"{dSource.FullName}/{f.Name}";
                 FileText temp = new FileText(src, des);
+                temp.saveFile();
+                Console.WriteLine(src);
             }
             //check all the folder
             foreach(DirectoryInfo subDir in dSource.GetDirectories())
             {
                 var name = subDir.Name;
-               var newdir= dDestination.CreateSubdirectory($"{name}");
+                var newdir= dDestination.CreateSubdirectory($"{name}");
                 createFolder(subDir.ToString(), newdir.FullName);
             }
-
         }
     }
 }
