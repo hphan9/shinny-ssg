@@ -7,11 +7,14 @@
 ## How to use
 
 Option	Function
-* -v, --version	Name and version
-* -h, --help information
-* -i, --input <'path-to-txt'> required	specifies an input file or folder to be processed
-* -s, --stylesheet <'link-to-css-stylesheet'>	
-* -o, --output specifies destination folder 
+ 
+| OPTION             | Function                            | 
+| ------------------ |:-----------------------------------:| 
+| -v --version       | 	Name and version                   | 
+| -h --help          |  Information                        |   
+| -s --stylesheet    | <'link-to-css-stylesheet'>	         | 
+| -i --input         | specifies an input file or folder   | 
+| -o --output        | specifies destination folder        | 
 
 ### Built with
 * .NET CORE 3.1
