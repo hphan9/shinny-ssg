@@ -6,6 +6,13 @@
 
 ## How to use
 
+### Command
+> shinny -h 
+> 
+> shinny -i <filePath> 
+>
+> shinny -i <path> -o <folder apth> -s <stylesheet link>
+
 Option	Function
  
 | OPTION             | Function                            | 
@@ -20,10 +27,4 @@ Option	Function
 * .NET CORE 3.1
 * [Command Line Utils](https://github.com/natemcmaster/CommandLineUtils)
 
-### How to use 
-> shinny -h 
-> 
-> shinny -i <filePath> 
->
-> shinny -i <path> -o <folder apth> -s <stylesheet link>
   
