@@ -18,7 +18,8 @@ namespace shinny_ssg
             var paraps = Regex.Split(text, "\r?\n\r?\n");
             //first line is title
             title = paraps[0];
-            cssString = String.IsNullOrEmpty(css) ? $"<link rel =\"stylesheet\"href =\"{css}\" >" : "";
+            cssString = String.IsNullOrEmpty(css) ? "" : $"<link rel =\"stylesheet\"href =\"{css}\" >";
+            Console.WriteLine(css);
             head= $"<head>"+
                 $"<meta charset = \"utf-8\" >" +
                  cssString +
