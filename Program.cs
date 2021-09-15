@@ -26,7 +26,7 @@ namespace shinny_ssg
                 try
                 {
                     var inputname = inputFileOption.Value();
-                    var cssString = cssOption.HasValue() ? cssOption.Value() : "";
+                    var cssString = cssOption.HasValue() ? cssOption.Value() : null;
                     if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
                     {
                         DESTINATION = outputOption.Value();
