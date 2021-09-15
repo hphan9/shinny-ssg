@@ -44,6 +44,7 @@ namespace shinny_ssg
                         {
                             dir.Delete(true);
                         }
+                        
                     }
                     if (File.Exists(inputname))
                     {
