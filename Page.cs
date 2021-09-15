@@ -9,20 +9,32 @@ namespace shinny_ssg
     
     class Page
     {
-        private string head;
+        private string head ;
         private string title;
         private string body;
-        public Page( string text)
+        private string cssString;
+        public Page( string text, string css)
         {
             var paraps = Regex.Split(text, "\r?\n\r?\n");
             //first line is title
             title = paraps[0];
-            head= $"<head><meta charset = \"utf-8\" ><title >{title} </title ><meta name = \"viewport\" content = \"width=device-width, initial-scale=1\"></head>";
+            cssString = String.IsNullOrEmpty(css) ? $"<link rel =\"stylesheet\"href =\"{css}\" >" : "";
+            head= $"<head>"+
+                $"<meta charset = \"utf-8\" >" +
+                 cssString +
+                 $"<title >{title} </title >" +
+                $"<meta name = \"viewport\" content = \"width=device-width, initial-scale=1\">" +
+                $"</head>";
             body += $"<h1>{title}</h1>";
             for(var i=1; i<paraps.Length; i++)
             {
                 body += $"<p>{paraps[i]}</p>";
             }
+
+
+        }
+        public void setCssFile(string cssFile)
+        {
 
         }
         public string getHead()

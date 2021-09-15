@@ -5,24 +5,19 @@ using System.Text;
 
 namespace shinny_ssg
 {
-    class Subfolder
-    {
-        private string source;
-        public Subfolder(string path)
-        {
-            source = path;
-        }
+    class Subfolder 
+    { 
 
         //recursive method
-        public void createFolder(string parent, string des)
+        public void createFolder(string parent, string des, string css)
         {
             DirectoryInfo dSource = new DirectoryInfo(parent);
             DirectoryInfo dDestination = new DirectoryInfo(des);
             //Getting only text files
             foreach(FileInfo f in dSource.GetFiles("*.txt") )
             {
-                var src = $"{dSource.FullName}/{f.Name}";
-                FileText temp = new FileText(src, des);
+                var src = $"{dSource.FullName}\\{f.Name}";
+                FileText temp = new FileText(src, des, css);
                 temp.saveFile();
                 Console.WriteLine(src);
             }
@@ -31,7 +26,7 @@ namespace shinny_ssg
             {
                 var name = subDir.Name;
                 var newdir= dDestination.CreateSubdirectory($"{name}");
-                createFolder(subDir.ToString(), newdir.FullName);
+                createFolder(subDir.ToString(), newdir.FullName, css);
             }
         }
     }

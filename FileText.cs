@@ -11,17 +11,14 @@ namespace shinny_ssg
         private string folder;
         private string name;
         private Page page;
-
-
-        public FileText(string source, string folder)
+        public FileText(string source, string folder, string cssString)
         {
             this.sourcePath = source;
             this.folder = folder;
             var fi1 = new FileInfo(source);
-           
             name = fi1.Name;
             var text = File.ReadAllText(source);
-            page = new Page(text);
+            page = new Page(text, cssString);
           
         }
 
