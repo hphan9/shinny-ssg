@@ -6,7 +6,6 @@ using System.Text.RegularExpressions;
 namespace shinny_ssg
 {
 
-
     class Page
     {
         private string head;

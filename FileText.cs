@@ -19,14 +19,14 @@ namespace shinny_ssg
             name = fi1.Name;
             var text = File.ReadAllText(source);
             page = new Page(text, cssString);
-          
+
         }
 
         public void saveFile()
         {
-            var newPath = $"{folder}\\{name.Replace("txt","html")}";
+            var newPath = $"{folder}\\{name.Replace("txt", "html")}";
             Console.WriteLine(newPath);
-            File.WriteAllText(newPath , page.getPage());
+            File.WriteAllText(newPath, page.getPage());
         }
     }
 }

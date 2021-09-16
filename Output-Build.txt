@@ -1,0 +1,8 @@
+﻿Build started...
+1>------ Build started: Project: shinny-ssg, Configuration: Debug Any CPU ------
+1>C:\Users\khoit\Desktop\OSD600\shinny-ssg\Program.cs(68,34,68,36): warning CS0168: The variable 'ex' is declared but never used
+1>shinny-ssg -> C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\shinny-ssg.dll
+1>shinny-ssg -> C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\shinny-ssg.dll
+1>Successfully created package 'C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\shinny-ssg.1.0.0.nupkg'.
+1>Done building project "shinny-ssg.csproj".
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
