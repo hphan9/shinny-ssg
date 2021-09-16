@@ -19,7 +19,6 @@ namespace shinny_ssg
                 var src = $"{dSource.FullName}\\{f.Name}";
                 FileText temp = new FileText(src, des);
                 temp.saveFile();
-                Console.WriteLine(src);
             }
             //check all the folder
             foreach (DirectoryInfo subDir in dSource.GetDirectories())

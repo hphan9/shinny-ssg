@@ -12,15 +12,16 @@ namespace shinny_ssg
         private string title;
         private string body;
         private string cssString;
+        public Page() { }
         public Page(string text)
         {
             var paraps = Regex.Split(text, "\r?\n\r?\n");
             //first line is title
             title = paraps[0];
-            cssString = String.IsNullOrEmpty(Globals.cssUrl) ?
-                "<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >"
-                 : $"<link rel =\"stylesheet\"href =\"{Globals.cssUrl}\" >";
-            Console.WriteLine(cssString);
+            cssString = String.IsNullOrEmpty(Globals.cssUrl)
+                       ? "<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >"
+                       : $"<link rel =\"stylesheet\"href =\"{Globals.cssUrl}\" >";
+
             head = $"<head>" +
                 $"<meta charset = \"utf-8\" >" +
                  cssString +
@@ -33,7 +34,10 @@ namespace shinny_ssg
                 body += $"<p>{paraps[i]}</p>";
             }
         }
-
+        public string getTitle()
+        {
+            return this.title;
+        }
         public string getPage()
         {
             //Creates a new file, write the contents to the file, and then closes the file. If the target file already exists, it is overwritten

@@ -31,7 +31,6 @@ namespace shinny_ssg
 
                     app.OnExecute(() =>
                     {
-
                         var inputname = inputFileOption.Value();
                         Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : null;
                         if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
@@ -42,7 +41,7 @@ namespace shinny_ssg
                         {
                             //It will delete all file even though the read or write process fail
                             System.IO.DirectoryInfo di = new DirectoryInfo(DESTINATION);
-                            foreach (FileInfo file in di.GetFiles())
+                            foreach (FileInfo file in di.GetFiles(""))
                             {
                                 file.Delete();
                             }
@@ -54,8 +53,6 @@ namespace shinny_ssg
                         }
                         if (File.Exists(inputname))
                         {
-                            //add try catch block here
-                            //if file can write and read ok we can delete old folder and write new file
                             FileText temp = new FileText(inputname, DESTINATION);
                             temp.saveFile();
                         }
@@ -69,8 +66,6 @@ namespace shinny_ssg
                             Console.WriteLine("File Name is not valid");
                         }
 
-                        Console.WriteLine($"File is in folder {DESTINATION}");
-
                     });
 
                     app.Execute(args);
@@ -80,9 +75,11 @@ namespace shinny_ssg
             {
                 Console.Error.WriteLine(ex.Message);
             }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine("There is an error with the transfer process");
+            }
         }
-
-
 
     }
 }

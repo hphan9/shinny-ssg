@@ -17,16 +17,37 @@ namespace shinny_ssg
             this.folder = folder;
             var fi1 = new FileInfo(source);
             name = fi1.Name;
-            var text = File.ReadAllText(source);
-            page = new Page(text);
+            string text = null;
+            try
+            {
+                text = File.ReadAllText(source);
+            }
+            catch (Exception ex)
+            {
+                page = new Page();
+                Console.Error.WriteLine($"Can not read file {name} in path {source}");
+            }
+            finally
+            {
+                page = new Page(text);
+            }
 
         }
 
         public void saveFile()
         {
-            var newPath = $"{folder}\\{name.Replace("txt", "html")}";
-            Console.WriteLine(newPath);
-            File.WriteAllText(newPath, page.getPage());
+            if (!String.IsNullOrEmpty(page.getTitle()))
+            {
+                var newPath = $"{folder}\\{name.Replace("txt", "html")}";
+                try
+                {
+                    File.WriteAllText(newPath, page.getPage());
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine($"Can not write file  {name} to path {newPath}");
+                }
+            }
         }
     }
 }
