@@ -12,14 +12,14 @@ namespace shinny_ssg
         private string title;
         private string body;
         private string cssString;
-        public Page(string text, string css)
+        public Page(string text)
         {
             var paraps = Regex.Split(text, "\r?\n\r?\n");
             //first line is title
             title = paraps[0];
-            cssString = String.IsNullOrEmpty(css) ?     
+            cssString = String.IsNullOrEmpty(Globals.cssUrl) ?
                 "<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >"
-                 : $"<link rel =\"stylesheet\"href =\"{css}\" >";
+                 : $"<link rel =\"stylesheet\"href =\"{Globals.cssUrl}\" >";
             Console.WriteLine(cssString);
             head = $"<head>" +
                 $"<meta charset = \"utf-8\" >" +

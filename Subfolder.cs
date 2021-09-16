@@ -9,7 +9,7 @@ namespace shinny_ssg
     {
 
         //recursive method
-        public void createFolder(string parent, string des, string css)
+        public void createFolder(string parent, string des)
         {
             DirectoryInfo dSource = new DirectoryInfo(parent);
             DirectoryInfo dDestination = new DirectoryInfo(des);
@@ -17,7 +17,7 @@ namespace shinny_ssg
             foreach (FileInfo f in dSource.GetFiles("*.txt"))
             {
                 var src = $"{dSource.FullName}\\{f.Name}";
-                FileText temp = new FileText(src, des, css);
+                FileText temp = new FileText(src, des);
                 temp.saveFile();
                 Console.WriteLine(src);
             }
@@ -26,7 +26,7 @@ namespace shinny_ssg
             {
                 var name = subDir.Name;
                 var newdir = dDestination.CreateSubdirectory($"{name}");
-                createFolder(subDir.ToString(), newdir.FullName, css);
+                createFolder(subDir.ToString(), newdir.FullName);
             }
         }
     }

@@ -3,13 +3,17 @@ using System.IO;
 using McMaster.Extensions.CommandLineUtils;
 namespace shinny_ssg
 {
+    static class Globals
+    {
+        public static string cssUrl;
+    }
+
     class Program
     {
-
         static void Main(string[] args)
         {
 
-            string DESTINATION = @"..\..\dist";
+            var DESTINATION = @".\dist";
 
             try
             {
@@ -29,7 +33,7 @@ namespace shinny_ssg
                     {
 
                         var inputname = inputFileOption.Value();
-                        var cssString = cssOption.HasValue() ? cssOption.Value() : null;
+                        Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : null;
                         if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
                         {
                             DESTINATION = outputOption.Value();
@@ -38,7 +42,6 @@ namespace shinny_ssg
                         {
                             //It will delete all file even though the read or write process fail
                             System.IO.DirectoryInfo di = new DirectoryInfo(DESTINATION);
-
                             foreach (FileInfo file in di.GetFiles())
                             {
                                 file.Delete();
@@ -53,13 +56,13 @@ namespace shinny_ssg
                         {
                             //add try catch block here
                             //if file can write and read ok we can delete old folder and write new file
-                            FileText temp = new FileText(inputname, DESTINATION, cssString);
+                            FileText temp = new FileText(inputname, DESTINATION);
                             temp.saveFile();
                         }
                         else if (Directory.Exists(inputname))
                         {
                             var f = new Subfolder();
-                            f.createFolder(inputname, DESTINATION, cssString);
+                            f.createFolder(inputname, DESTINATION);
                         }
                         else
                         {
