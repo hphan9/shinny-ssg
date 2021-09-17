@@ -5,17 +5,17 @@
 * give user the options to spectify destination folder and/or stylesheet url link
 
 ## How to use
-### Install
 * Download or clone the shinny-ssg folder to your local machine
 * Use command prompt to use the tool by these command:
 * Navigate to the folder netcoreapp3.1 in the shinny-ssg folder ( path `shinny-ssg\bin\Debug\netcoreapp3.1`)
-* In 
+* In the command prompt run `shinny-ssg.exe -h` to see the option
+* The file will be generated in the `shinny-ssg\bin\Debug\netcoreapp3.1\dist` folder by default or in the destination folder if user specified
 ### Command
-> shinny -h 
+> shinny-ssg.exe -h 
 > 
-> shinny -i `<filePath>` 
+> shinny-ssg.exe -i `<filePath>` 
 >
-> shinny -i `<path>` -o `<folder path>` -s `<stylesheet link>`
+> shinny-ssg.exe -i `<path>` -o `<folder path>` -s `<stylesheet link>`
 
 Option	Function
  
