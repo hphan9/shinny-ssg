@@ -7,47 +7,55 @@ namespace shinny_ssg
 {
     class FileText
     {
-        private string sourcePath;
-        private string folder;
-        private string name;
-        private Page page;
-        public FileText(string source, string folder)
+        private string _sourcePath;
+
+        private string _folder;
+
+        private string _name;
+
+        private Page _page;
+        public FileText() { }
+
+        public bool CreateFile(string source, string folder)
         {
-            this.sourcePath = source;
-            this.folder = folder;
+            this._sourcePath = source;
+            this._folder = folder;
             var fi1 = new FileInfo(source);
-            name = fi1.Name;
+            _name = fi1.Name;
             string text = null;
             try
             {
                 text = File.ReadAllText(source);
             }
+            catch (UnauthorizedAccessException)
+            {
+
+                Console.Error.WriteLine($"The file or directory cannot be authorized. There is no read permission for {_name} file or directory. ");
+                return false;
+            }
             catch (Exception ex)
             {
-                page = new Page();
-                Console.Error.WriteLine($"Can not read file {name} in path {source}");
+                Console.Error.WriteLine($"Can not read file {_name} in path {source}");
+                Console.WriteLine(ex.Message);
+                return false;
             }
-            finally
-            {
-                page = new Page(text);
-            }
-
+            _page = new Page(text);
+            return true;
         }
 
-        public void saveFile()
+        public void SaveFile()
         {
-            if (!String.IsNullOrEmpty(page.getTitle()))
+
+            var newPath = $"{_folder}\\{_name.Replace("txt", "html")}";
+            try
             {
-                var newPath = $"{folder}\\{name.Replace("txt", "html")}";
-                try
-                {
-                    File.WriteAllText(newPath, page.getPage());
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine($"Can not write file  {name} to path {newPath}");
-                }
+                File.WriteAllText(newPath, _page.GetPage());
             }
+            catch (Exception ex)
+            {
+                Console.Error.WriteLine($"Can not write file  {_name} to path {newPath}");
+            }
+
         }
     }
 }

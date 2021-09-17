@@ -13,7 +13,7 @@ namespace shinny_ssg
         static void Main(string[] args)
         {
 
-            var DESTINATION = @".\dist";
+            var destination = @".\dist";
 
             try
             {
@@ -35,12 +35,12 @@ namespace shinny_ssg
                         Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : null;
                         if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
                         {
-                            DESTINATION = outputOption.Value();
+                            destination = outputOption.Value();
                         }
                         else
                         {
                             //It will delete all file even though the read or write process fail
-                            System.IO.DirectoryInfo di = new DirectoryInfo(DESTINATION);
+                            System.IO.DirectoryInfo di = new DirectoryInfo(destination);
                             foreach (FileInfo file in di.GetFiles(""))
                             {
                                 file.Delete();
@@ -53,17 +53,23 @@ namespace shinny_ssg
                         }
                         if (File.Exists(inputname))
                         {
-                            FileText temp = new FileText(inputname, DESTINATION);
-                            temp.saveFile();
+                            //if the file can not read or create , it will never be saved in the destinaiton folder
+                            FileText temp = new FileText();
+                            if (temp.CreateFile(inputname, destination))
+                            {
+                                temp.SaveFile();
+                                Console.WriteLine($"File is converted suceesful in {destination} folder");
+                            }
+
                         }
                         else if (Directory.Exists(inputname))
                         {
                             var f = new Subfolder();
-                            f.createFolder(inputname, DESTINATION);
+                            f.CreateFolder(inputname, destination);
                         }
                         else
                         {
-                            Console.WriteLine("File Name is not valid");
+                            Console.WriteLine("Input Path is not valid.");
                         }
 
                     });
@@ -78,6 +84,7 @@ namespace shinny_ssg
             catch (Exception ex)
             {
                 Console.Error.WriteLine("There is an error with the transfer process");
+                Console.Error.WriteLine(ex.Message);
             }
         }
 
