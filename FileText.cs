@@ -8,11 +8,8 @@ namespace shinny_ssg
     class FileText
     {
         private string _sourcePath;
-
         private string _folder;
-
         private string _name;
-
         private Page _page;
         public FileText() { }
 

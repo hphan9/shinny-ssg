@@ -33,10 +33,7 @@ namespace shinny_ssg
                 _body += $"<p>{temp}</p>";
             }
         }
-        public string GetTitle()
-        {
-            return this._title;
-        }
+
         public string GetPage()
         {
             //Creates a new file, write the contents to the file, and then closes the file. If the target file already exists, it is overwritten

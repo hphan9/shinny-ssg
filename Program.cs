@@ -51,7 +51,7 @@ namespace shinny_ssg
                             }
 
                         }
-                        if (File.Exists(inputname))
+                        if (File.Exists(inputname) && inputname.EndsWith(".txt"))
                         {
                             //if the file can not read or create , it will never be saved in the destinaiton folder
                             FileText temp = new FileText();
@@ -59,7 +59,7 @@ namespace shinny_ssg
                             {
                                 if (temp.SaveFile())
                                 {
-                                    Console.WriteLine($"File {inputname} is converted suceesful in {destination} folder");
+                                    Console.WriteLine($"File {inputname} is converted sucessfull in {destination} folder");
                                 }
                             }
 
@@ -68,6 +68,7 @@ namespace shinny_ssg
                         {
                             var f = new Subfolder();
                             f.CreateFolder(inputname, destination);
+
                         }
                         else
                         {

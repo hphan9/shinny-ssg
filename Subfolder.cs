@@ -22,7 +22,7 @@ namespace shinny_ssg
                 {
                     if (temp.SaveFile())
                     {
-                        Console.WriteLine($"File {f.Name} is converted suceesful in {dDestination} folder");
+                        Console.WriteLine($" {f.Name} is converted sucessfull in {dDestination} folder");
                     }
                 }
 
