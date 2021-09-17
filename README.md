@@ -7,8 +7,9 @@
 ## How to use
 ### Install
 * Download or clone the shinny-ssg folder to your local machine
-* Use command prompt to build and use the tool by these command:
-* `
+* Use command prompt to use the tool by these command:
+* Navigate to the folder netcoreapp3.1 in the shinny-ssg folder ( path `shinny-ssg\bin\Debug\netcoreapp3.1`)
+* In 
 ### Command
 > shinny -h 
 > 
