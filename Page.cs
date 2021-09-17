@@ -22,16 +22,15 @@ namespace shinny_ssg
                        ? "<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >"
                        : $"<link rel =\"stylesheet\"href =\"{Globals.cssUrl}\" >";
 
-            head = $"<head>" +
-                $"<meta charset = \"utf-8\" >" +
+            head = $"<meta charset = \"utf-8\" >" +
                  cssString +
                 $"<title >{title} </title >" +
-                $"<meta name = \"viewport\" content = \"width=device-width, initial-scale=1\">" +
-                $"</head>";
+                $"<meta name = \"viewport\" content = \"width=device-width, initial-scale=1\">";
             body += $"<h1>{title}</h1>";
             for (var i = 1; i < paraps.Length; i++)
             {
-                body += $"<p>{paraps[i]}</p>";
+                var temp = Regex.Replace(paraps[i], "\r?\n", " ");
+                body += $"<p>{temp}</p>";
             }
         }
         public string getTitle()
@@ -41,7 +40,7 @@ namespace shinny_ssg
         public string getPage()
         {
             //Creates a new file, write the contents to the file, and then closes the file. If the target file already exists, it is overwritten
-            return $"<html> <head>{head}</head> <body>{body}</body> </html>";
+            return $"<html> <head> {head} </head> <body>{body}</body> </html>";
         }
     }
 }
