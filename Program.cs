@@ -57,8 +57,10 @@ namespace shinny_ssg
                             FileText temp = new FileText();
                             if (temp.CreateFile(inputname, destination))
                             {
-                                temp.SaveFile();
-                                Console.WriteLine($"File is converted suceesful in {destination} folder");
+                                if (temp.SaveFile())
+                                {
+                                    Console.WriteLine($"File {inputname} is converted suceesful in {destination} folder");
+                                }
                             }
 
                         }

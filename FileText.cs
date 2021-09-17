@@ -35,7 +35,7 @@ namespace shinny_ssg
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Can not read file {_name} in path {source}");
+                Console.Error.WriteLine($"Can not read file {_name} from {source}");
                 Console.WriteLine(ex.Message);
                 return false;
             }
@@ -43,7 +43,7 @@ namespace shinny_ssg
             return true;
         }
 
-        public void SaveFile()
+        public bool SaveFile()
         {
 
             var newPath = $"{_folder}\\{_name.Replace("txt", "html")}";
@@ -53,9 +53,10 @@ namespace shinny_ssg
             }
             catch (Exception ex)
             {
-                Console.Error.WriteLine($"Can not write file  {_name} to path {newPath}");
+                Console.Error.WriteLine($"Can not write file {_name} to {newPath}");
+                return false;
             }
-
+            return true;
         }
     }
 }
