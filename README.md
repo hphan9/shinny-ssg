@@ -2,7 +2,7 @@
 ## Features
 * generate a .html file from a .txt file with a title
 * accept folder to generate .html files in the new folder with the same structure of original folder
-* give user the options to spectify destination folder and/or stylesheet url link
+* give user the options to specify destination folder and/or stylesheet url link
 
 ## How to use
 * Download or clone the shinny-ssg folder to your local machine
