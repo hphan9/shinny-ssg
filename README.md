@@ -1,8 +1,8 @@
 # shinny-ssg Version 0.1 - CLI Tool to generate HTML File
 
 ## Features
-* generate .html fileS from .txt files
-* accept folder as input path to generate .html files in the destionation folder with the same structure of original folder
+* generate .html files from .txt files
+* accept folder as input path to generate .html files in the destionation folder which will the same structure of original folder
 * give user the options to specify destination folder and/or stylesheet url link
 
 ## How to use
