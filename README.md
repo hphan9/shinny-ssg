@@ -2,7 +2,7 @@
 
 ## Features
 * generate .html files from .txt files
-* accept folder as input path to generate .html files in the destionation folder which will the same structure of original folder
+* accept folder as input path to generate .html files in the destionation folder which will has the same structure as the original folder
 * give user the options to specify destination folder and/or stylesheet url link
 
 ## How to use
