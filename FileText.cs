@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using System.Text.RegularExpressions;
 
 namespace shinny_ssg
 {
@@ -44,7 +43,7 @@ namespace shinny_ssg
         public bool SaveFile()
         {
 
-            var newPath = $"{_folder}\\{Regex.Replace(_name, @"\.(md|txt)", ".html")}";
+            var newPath = $"{_folder}\\{_name.Replace("txt", "html")}";
             try
             {
                 File.WriteAllText(newPath, _page.GetPage());

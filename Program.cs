@@ -51,7 +51,7 @@ namespace shinny_ssg
                             }
 
                         }
-                        if (File.Exists(inputname) && (inputname.EndsWith(".txt") || inputname.EndsWith(".md")))
+                        if (File.Exists(inputname) && inputname.EndsWith(".txt"))
                         {
                             //if the file can not read or create , it will never be saved in the destinaiton folder
                             FileText temp = new FileText();
