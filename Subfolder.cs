@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Text;
 
 namespace shinny_ssg
 {
@@ -13,8 +13,8 @@ namespace shinny_ssg
         {
             DirectoryInfo dSource = new DirectoryInfo(parent);
             DirectoryInfo dDestination = new DirectoryInfo(des);
-            //Getting only text files and markdown files
-            foreach (FileInfo f in dSource.EnumerateFiles("*.*",SearchOption.AllDirectories).Where(file => file.Name.EndsWith(".txt") || file.Name.EndsWith(".md")))
+            //Getting only text files
+            foreach (FileInfo f in dSource.GetFiles("*.txt"))
             {
                 var src = $"{dSource.FullName}\\{f.Name}";
                 var temp = new FileText();
