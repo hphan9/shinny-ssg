@@ -6,6 +6,7 @@ namespace shinny_ssg
     static class Globals
     {
         public static string cssUrl;
+        public static string langAtr;
     }
 
     class Program
@@ -23,16 +24,19 @@ namespace shinny_ssg
                     //help option
                     app.HelpOption();
                     app.VersionOption("-v|--version", "0.1", "Shinny SSG 0.1");
-                    var inputFileOption = app.Option<string>("-i|--input", "Input file/folder to convert to HTML", CommandOptionType.SingleValue)
+                    var inputFileOption = app.Option<string>("-i|--input", "Input file/folder to convert source file to HTML", CommandOptionType.SingleValue)
                                            .IsRequired();
-                    var outputOption = app.Option<string>("-o|--output", "Output folder for converted file", CommandOptionType.SingleValue);
-                    var cssOption = app.Option<string>("---stylesheet| -s", "Style Sheet for the HTML file", CommandOptionType.SingleValue);
+                    var outputOption = app.Option<string>("-o|--output", "Output folder for converted file/files", CommandOptionType.SingleValue);
+                    var cssOption = app.Option<string>("--stylesheet| -s", "Style Sheet for the converted HTML file", CommandOptionType.SingleValue);
+                    //language option
+                    var langOption = app.Option<string>("-l|--lang", "Language Attribute of the converted HTML file", CommandOptionType.SingleValue);
                     //on excute
 
                     app.OnExecute(() =>
                     {
                         var inputname = inputFileOption.Value();
                         Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : null;
+                        Globals.langAtr = langOption.HasValue() ? langOption.Value() : null;
                         if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
                         {
                             destination = outputOption.Value();
@@ -51,6 +55,7 @@ namespace shinny_ssg
                             }
 
                         }
+
                         if (File.Exists(inputname) && (inputname.EndsWith(".txt") || inputname.EndsWith(".md")))
                         {
                             //if the file can not read or create , it will never be saved in the destinaiton folder
