@@ -2,7 +2,7 @@
   "profiles": {
     "shinny-ssg": {
       "commandName": "Project",
-      "commandLineArgs": "-i C:\\Users\\khoit\\Desktop\\OSD600\\Sherlock-Holmes-Selected-Stories -l fr"
+      "commandLineArgs": "-i  -l fr"
     }
   }
 }

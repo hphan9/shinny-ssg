@@ -11,7 +11,7 @@ namespace shinny_ssg
 
     class Program
     {
-        static void Main(string[] args)
+        static int Main(string[] args)
         {
 
             var destination = @".\dist";
@@ -88,12 +88,16 @@ namespace shinny_ssg
             catch (CommandParsingException ex)
             {
                 Console.Error.WriteLine(ex.Message);
+                return -1;
             }
             catch (Exception ex)
             {
                 Console.Error.WriteLine("There is an error with the transfer process");
                 Console.Error.WriteLine(ex.Message);
+                return -1;
             }
+
+            return 0;
         }
 
     }
