@@ -10,6 +10,7 @@
 * Use command prompt to navigate to the folder netcoreapp3.1 in the shinny-ssg folder ( path `shinny-ssg\bin\Debug\netcoreapp3.1`)
 * In the command prompt run `shinny-ssg.exe -h` to see the options
 * The file will be generated in the `shinny-ssg\bin\Debug\netcoreapp3.1\dist` folder by default or in the destination folder if specified by user
+* If there is no error, the app exits with code 0, otherwhise it exits with code -1
 ### Command
 > shinny-ssg.exe -h 
 > 
@@ -23,9 +24,10 @@ Option	Function
 | ------------------ |:-----------------------------------:| 
 | -v --version       | 	Name and version                   | 
 | -h --help          |  Information                        |   
-| -s --stylesheet    | <'link-to-css-stylesheet'>	         | 
+| -s --stylesheet    | <'link-to-css-stylesheet'>	       | 
 | -i --input         | specifies an input file or folder   | 
 | -o --output        | specifies destination folder        | 
+| -l --lang          | specifies language atrribute        | 
 
 ### Built with
 * .NET CORE 3.1
