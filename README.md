@@ -20,16 +20,7 @@
 
 Option	Function
  
-<<<<<<< HEAD
-| OPTION             | Function                                  | 
-| ------------------ |:-----------------------------------------:| 
-| -v --version       | 	Name and version                         | 
-| -h --help          |  Information                              |   
-| -s --stylesheet    | <'link-to-css-stylesheet'>	             | 
-| -i --input         | specifies an input file or folder         | 
-| -o --output        | specifies destination folder              | 
-| -l --lang          | specifies language attribute of html file | 
-=======
+
 | OPTION             | Function                            | 
 | ------------------ |:-----------------------------------:| 
 | -v --version       | 	Name and version                   | 
@@ -39,7 +30,7 @@ Option	Function
 | -o --output        | specifies destination folder        | 
 | -l --lang          | specifies language atrribute        | 
 
->>>>>>> issue-14
+
 ### Built with
 * .NET CORE 3.1
 * [Command Line Utils](https://github.com/natemcmaster/CommandLineUtils)
