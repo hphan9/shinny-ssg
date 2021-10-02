@@ -1,9 +1,9 @@
 # shinny-ssg Version 0.1 - CLI Tool to generate HTML File
 
 ## Features
-* generate .html files from .txt files
+* generate .html files from .txt files and .md files
 * accept folder as input path to generate .html files in the destionation folder which will has the same structure as the original folder
-* give user the options to specify destination folder and/or stylesheet url link
+* give user the options to specify destination folder, language attribute for HTML files and/or stylesheet url link 
 
 ## How to use
 * Download or clone the shinny-ssg folder to your local machine
@@ -19,14 +19,14 @@
 
 Option	Function
  
-| OPTION             | Function                            | 
-| ------------------ |:-----------------------------------:| 
-| -v --version       | 	Name and version                   | 
-| -h --help          |  Information                        |   
-| -s --stylesheet    | <'link-to-css-stylesheet'>	         | 
-| -i --input         | specifies an input file or folder   | 
-| -o --output        | specifies destination folder        | 
-
+| OPTION             | Function                                  | 
+| ------------------ |:-----------------------------------------:| 
+| -v --version       | 	Name and version                         | 
+| -h --help          |  Information                              |   
+| -s --stylesheet    | <'link-to-css-stylesheet'>	             | 
+| -i --input         | specifies an input file or folder         | 
+| -o --output        | specifies destination folder              | 
+| -l --lang          | specifies language attribute of html file | 
 ### Built with
 * .NET CORE 3.1
 * [Command Line Utils](https://github.com/natemcmaster/CommandLineUtils)
