@@ -29,6 +29,7 @@ Option	Function
 | -i --input         | specifies an input file or folder   | 
 | -o --output        | specifies destination folder        | 
 | -l --lang          | specifies language atrribute        | 
+| -c --config        | accept a file path to a JSON config file |
 
 
 ### Built with
