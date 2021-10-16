@@ -17,9 +17,13 @@ namespace shinny_ssg
         public bool CreateFile(string source, string folder)
         {
             this._sourcePath = source;
+            if (Path.GetExtension(_sourcePath) != ".txt" && Path.GetExtension(_sourcePath) != ".md")
+            {
+                return false;
+            }
+
             this._folder = folder;
-            var fi1 = new FileInfo(source);
-            _name = fi1.Name;
+            _name = Path.GetFileNameWithoutExtension(_sourcePath);
             string text = null;
             try
             {
@@ -44,7 +48,7 @@ namespace shinny_ssg
         public bool SaveFile()
         {
 
-            var newPath = $"{_folder}\\{Regex.Replace(_name, @"\.(md|txt)", ".html")}";
+            var newPath = Path.Combine(_folder, $"{_name}.html");
             try
             {
                 File.WriteAllText(newPath, _page.GetPage());
@@ -56,5 +60,7 @@ namespace shinny_ssg
             }
             return true;
         }
+
+
     }
 }

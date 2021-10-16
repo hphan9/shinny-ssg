@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "1xkMbQyQ8Ua0lQSwnX+VyZW2aXuhOte3kaFoG+PHSt+JuBZqRgnjskVl7OAn93cWAi2MZ1zR0ySe5qM3gonLyA==",
+  "dgSpecHash": "mWzbuJwt0KtERD89AkruKpCIOpJoImgIPVDqWwKLFQ+EJEKE0nz7L1QvJKGntNulyx9TpIZ3GcWAR8IixmP9+w==",
   "success": true,
   "projectFilePath": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\khoit\\.nuget\\packages\\mcmaster.extensions.commandlineutils\\3.1.0\\mcmaster.extensions.commandlineutils.3.1.0.nupkg.sha512",
+    "C:\\Users\\khoit\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\khoit\\.nuget\\packages\\system.componentmodel.annotations\\5.0.0\\system.componentmodel.annotations.5.0.0.nupkg.sha512"
   ],
   "logs": []
