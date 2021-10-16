@@ -8,13 +8,13 @@ namespace shinny_ssg
     class Generator
     {
         private string _input;
-        private string _destination;
+        private string _outputFolder;
         private string _CssUrl;
         private string _langAtr;
-        public Generator(string input, string destination, string CssUrl, string langAtr)
+        public Generator(string input, string outputFolder, string CssUrl, string langAtr)
         {
             _input = input;
-            _destination = destination;
+            _outputFolder = outputFolder;
             _CssUrl = CssUrl;
             _langAtr = langAtr;
         }
@@ -23,11 +23,11 @@ namespace shinny_ssg
         {
             if (File.Exists(_input))
             {
-                GenerateFile(_input, _destination);
+                GenerateFile(_input, _outputFolder);
             }
             else if (Directory.Exists(_input))
             {
-                GenerateFolder(_input, _destination);
+                GenerateFolder(_input, _outputFolder);
             }
             else
             {
@@ -37,28 +37,28 @@ namespace shinny_ssg
             return 0;
         }
 
-        private void GenerateFile(string src, string destination)
+        private void GenerateFile(string src, string outputFolder)
         {
             var temp = new FileText();
-            if (temp.CreateFile(src, destination, _CssUrl, _langAtr))
+            if (temp.CreateFile(src, outputFolder, _CssUrl, _langAtr))
             {
                 if (temp.SaveFile())
                 {
-                    Console.WriteLine($" {Path.GetFileName(src)} --------- {Path.GetFullPath(destination)} ");
+                    Console.WriteLine($" {Path.GetFileName(src)} --------- {Path.GetFullPath(outputFolder)} ");
                 }
             }
 
         }
         //recursive method 
-        private void GenerateFolder(string parent, string destionation)
+        private void GenerateFolder(string parent, string outputFolder)
         {
             DirectoryInfo dSource = new DirectoryInfo(parent);
-            DirectoryInfo dDestination = new DirectoryInfo(destionation);
+            DirectoryInfo dDestination = new DirectoryInfo(outputFolder);
             //Getting only text files and markdown files
             foreach (FileInfo f in dSource.EnumerateFiles("*.*", SearchOption.AllDirectories))
             {
                 var src = Path.Combine(dSource.FullName, f.Name);
-                GenerateFile(src, destionation);
+                GenerateFile(src, outputFolder);
             }
             //check all the folder
             foreach (DirectoryInfo subDir in dSource.GetDirectories())

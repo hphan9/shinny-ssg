@@ -11,7 +11,7 @@ namespace shinny_ssg
         static int Main(string[] args)
         {
             var result = 0;
-            var destination = @".\dist";
+            var outputFolder = @".\dist";
             string cssUrl = @"<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >";
             string langAtr = "lang= \"en-CA\"";
             try
@@ -38,24 +38,24 @@ namespace shinny_ssg
                         var inputValue = inputFileOption.HasValue() ? inputFileOption.Value() : null;
 
                         // If config worked 
-                        var inputname = "";
+                        var input = "";
                         if (configName != null && File.Exists(configName) && (configName.EndsWith(".json")))
                         {
                             //start working with config File here
                             string jsonString = File.ReadAllText(configName);
                             JObject jObj = JObject.Parse(jsonString);
-                            inputname = jObj.ContainsKey("input") ? (string)jObj["input"] : "";
+                            input = jObj.ContainsKey("input") ? (string)jObj["input"] : "";
                             cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
                             langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
-                            destination = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
+                            outputFolder = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
                         }
 
                         else if (inputValue != null)
                         {
-                            inputname = inputValue;
+                            input = inputValue;
                             cssUrl = cssOption.HasValue() ? cssOption.Value() : default;
                             langAtr = langOption.HasValue() ? langOption.Value() : default;
-                            destination = outputOption.HasValue() ? outputOption.Value() : default;
+                            outputFolder = outputOption.HasValue() ? outputOption.Value() : default;
                         }
                         else
                         {
@@ -63,16 +63,16 @@ namespace shinny_ssg
                         }
 
                         //It will delete all file even though the read or write process fail
-                        if (Directory.Exists(destination))
+                        if (Directory.Exists(outputFolder))
                         {
-                            System.IO.DirectoryInfo di = new DirectoryInfo(destination);
+                            System.IO.DirectoryInfo di = new DirectoryInfo(outputFolder);
                             di.Delete(true);
                         }
-                        var newDir = Directory.CreateDirectory(destination);
+                        var newDir = Directory.CreateDirectory(outputFolder);
 
                         //Create Generator
-                        var gen = new Generator(inputname, destination, cssUrl, langAtr);
-                        result = gen.Run();
+                        var generator = new Generator(input, outputFolder, cssUrl, langAtr);
+                        result = generator.Run();
                     });
 
                     app.Execute(args);
