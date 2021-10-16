@@ -15,13 +15,13 @@ namespace shinny_ssg
         private string _cssString;
         private string _lang;
         public Page() { }
-        public Page(string text)
+        public Page(string text, string cssUrl, string langAtr)
         {
             var paraps = Regex.Split(text, "\r?\n\r?\n");
             //first line is _title
             _title = paraps[0];
-            _cssString = $"<link rel =\"stylesheet\"href =\"{Globals.cssUrl}\" >";
-            _lang = $"lang= \"{Globals.langAtr}\"";
+            _cssString = $"<link rel =\"stylesheet\"href =\"{cssUrl}\" >";
+            _lang = $"lang= \"{langAtr}\"";
             _head = $"<meta charset = \"utf-8\" >" +
                  _cssString +
                 $"<title >{_title} </title >" +

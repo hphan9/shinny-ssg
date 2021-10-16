@@ -9,11 +9,14 @@ namespace shinny_ssg
     {
         private string _input;
         private string _destination;
-
-        public Generator(string input, string destination)
+        private string _CssUrl;
+        private string _langAtr;
+        public Generator(string input, string destination, string CssUrl, string langAtr)
         {
             _input = input;
             _destination = destination;
+            _CssUrl = CssUrl;
+            _langAtr = langAtr;
         }
 
         public int Run()
@@ -37,7 +40,7 @@ namespace shinny_ssg
         private void GenerateFile(string src, string destination)
         {
             var temp = new FileText();
-            if (temp.CreateFile(src, destination))
+            if (temp.CreateFile(src, destination, _CssUrl, _langAtr))
             {
                 if (temp.SaveFile())
                 {

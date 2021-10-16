@@ -5,11 +5,6 @@ using Newtonsoft.Json.Linq;
 
 namespace shinny_ssg
 {
-    static class Globals
-    {
-        public static string cssUrl = "<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >";
-        public static string langAtr = "lang= \"en-CA\"";
-    }
 
     class Program
     {
@@ -17,7 +12,8 @@ namespace shinny_ssg
         {
             var result = 0;
             var destination = @".\dist";
-
+            string cssUrl = @"<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >";
+            string langAtr = "lang= \"en-CA\"";
             try
             {
                 //initialize new CLI application
@@ -49,16 +45,16 @@ namespace shinny_ssg
                             string jsonString = File.ReadAllText(configName);
                             JObject jObj = JObject.Parse(jsonString);
                             inputname = jObj.ContainsKey("input") ? (string)jObj["input"] : "";
-                            Globals.cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
-                            Globals.langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
+                            cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
+                            langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
                             destination = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
                         }
 
                         else if (inputValue != null)
                         {
                             inputname = inputValue;
-                            Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : default;
-                            Globals.langAtr = langOption.HasValue() ? langOption.Value() : default;
+                            cssUrl = cssOption.HasValue() ? cssOption.Value() : default;
+                            langAtr = langOption.HasValue() ? langOption.Value() : default;
                             destination = outputOption.HasValue() ? outputOption.Value() : default;
                         }
                         else
@@ -72,10 +68,10 @@ namespace shinny_ssg
                             System.IO.DirectoryInfo di = new DirectoryInfo(destination);
                             di.Delete(true);
                         }
-                        DirectoryInfo newDir = Directory.CreateDirectory(destination);
+                        var newDir = Directory.CreateDirectory(destination);
 
                         //Create Generator
-                        var gen = new Generator(inputname, destination);
+                        var gen = new Generator(inputname, destination, cssUrl, langAtr);
                         result = gen.Run();
                     });
 

@@ -14,7 +14,7 @@ namespace shinny_ssg
         private Page _page;
         public FileText() { }
 
-        public bool CreateFile(string source, string folder)
+        public bool CreateFile(string source, string folder, string CssUrl, string langAtr)
         {
             this._sourcePath = source;
             if (Path.GetExtension(_sourcePath) != ".txt" && Path.GetExtension(_sourcePath) != ".md")
@@ -41,7 +41,7 @@ namespace shinny_ssg
                 Console.WriteLine(ex.Message);
                 return false;
             }
-            _page = new Page(text);
+            _page = new Page(text, CssUrl, langAtr);
             return true;
         }
 
