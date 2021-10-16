@@ -5,19 +5,15 @@ using Newtonsoft.Json.Linq;
 
 namespace shinny_ssg
 {
-    static class Globals
-    {
-        public static string cssUrl;
-        public static string langAtr;
-    }
 
     class Program
     {
         static int Main(string[] args)
         {
-
+            var result = 0;
             var destination = @".\dist";
-
+            string cssUrl = @"<style type ='text/css'> body { display: block;max-width: 800px; margin: 20px auto; padding: 0 10px; word-wrap: break-word  }</style >";
+            string langAtr = "lang= \"en-CA\"";
             try
             {
                 //initialize new CLI application
@@ -42,7 +38,6 @@ namespace shinny_ssg
                         var inputValue = inputFileOption.HasValue() ? inputFileOption.Value() : null;
 
                         // If config worked 
-
                         var inputname = "";
                         if (configName != null && File.Exists(configName) && (configName.EndsWith(".json")))
                         {
@@ -50,65 +45,34 @@ namespace shinny_ssg
                             string jsonString = File.ReadAllText(configName);
                             JObject jObj = JObject.Parse(jsonString);
                             inputname = jObj.ContainsKey("input") ? (string)jObj["input"] : "";
-                            Globals.cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : null;
-                            Globals.langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : null;
-                            destination = jObj.ContainsKey("lang") ? (string)jObj["output"] : default;
+                            cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
+                            langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
+                            destination = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
                         }
+
                         else if (inputValue != null)
                         {
-                            Globals.cssUrl = cssOption.HasValue() ? cssOption.Value() : null;
-                            Globals.langAtr = langOption.HasValue() ? langOption.Value() : null;
-                            if (outputOption.HasValue() && Directory.Exists(outputOption.Value()))
-                            {
-                                destination = outputOption.Value();
-                            }
-                            else
-                            {
-                                //It will delete all file even though the read or write process fail
-                                System.IO.DirectoryInfo di = new DirectoryInfo(destination);
-                                foreach (FileInfo file in di.GetFiles(""))
-                                {
-                                    file.Delete();
-                                }
-                                foreach (DirectoryInfo dir in di.GetDirectories())
-                                {
-                                    dir.Delete(true);
-                                }
-
-                            }
                             inputname = inputValue;
+                            cssUrl = cssOption.HasValue() ? cssOption.Value() : default;
+                            langAtr = langOption.HasValue() ? langOption.Value() : default;
+                            destination = outputOption.HasValue() ? outputOption.Value() : default;
                         }
                         else
                         {
                             throw new Exception("Either Input or Config File must have a valid value ");
                         }
 
-
-                        if (File.Exists(inputname) && (inputname.EndsWith(".txt") || inputname.EndsWith(".md")))
+                        //It will delete all file even though the read or write process fail
+                        if (Directory.Exists(destination))
                         {
-                            //if the file can not read or create , it will never be saved in the destinaiton folder
-                            FileText temp = new FileText();
-                            if (temp.CreateFile(inputname, destination))
-                            {
-                                if (temp.SaveFile())
-                                {
-                                    Console.WriteLine($"File {inputname} is converted sucessfull in {destination} folder");
-                                }
-                            }
-
+                            System.IO.DirectoryInfo di = new DirectoryInfo(destination);
+                            di.Delete(true);
                         }
-                        else if (Directory.Exists(inputname))
-                        {
-                            var f = new Subfolder();
-                            f.CreateFolder(inputname, destination);
-                        }
-                        else
-                        {
-                            Console.WriteLine("Input Path is not valid.");
-                        }
+                        var newDir = Directory.CreateDirectory(destination);
 
-
-
+                        //Create Generator
+                        var gen = new Generator(inputname, destination, cssUrl, langAtr);
+                        result = gen.Run();
                     });
 
                     app.Execute(args);
@@ -125,7 +89,7 @@ namespace shinny_ssg
                 return -1;
             }
 
-            return 0;
+            return result;
         }
 
     }

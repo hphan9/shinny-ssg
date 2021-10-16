@@ -14,12 +14,16 @@ namespace shinny_ssg
         private Page _page;
         public FileText() { }
 
-        public bool CreateFile(string source, string folder)
+        public bool CreateFile(string source, string folder, string CssUrl, string langAtr)
         {
             this._sourcePath = source;
+            if (Path.GetExtension(_sourcePath) != ".txt" && Path.GetExtension(_sourcePath) != ".md")
+            {
+                return false;
+            }
+
             this._folder = folder;
-            var fi1 = new FileInfo(source);
-            _name = fi1.Name;
+            _name = Path.GetFileNameWithoutExtension(_sourcePath);
             string text = null;
             try
             {
@@ -37,14 +41,14 @@ namespace shinny_ssg
                 Console.WriteLine(ex.Message);
                 return false;
             }
-            _page = new Page(text);
+            _page = new Page(text, CssUrl, langAtr);
             return true;
         }
 
         public bool SaveFile()
         {
 
-            var newPath = $"{_folder}\\{Regex.Replace(_name, @"\.(md|txt)", ".html")}";
+            var newPath = Path.Combine(_folder, $"{_name}.html");
             try
             {
                 File.WriteAllText(newPath, _page.GetPage());
@@ -56,5 +60,7 @@ namespace shinny_ssg
             }
             return true;
         }
+
+
     }
 }
