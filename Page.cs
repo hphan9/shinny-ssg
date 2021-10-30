@@ -22,10 +22,14 @@ namespace shinny_ssg
             _title = paraps[0];
             _cssString = $"<link rel =\"stylesheet\"href =\"{cssUrl}\" >";
             _lang = $"lang= \"{langAtr}\"";
-            _head = $"<meta charset = \"utf-8\" >" +
+            _head = $"<meta http-equiv=\"Content - Type\" content=\"text / html; charset = utf - 8\"/>" +
                  _cssString +
                 $"<title >{_title} </title >" +
-                $"<meta name = \"viewport\" content = \"width=device-width, initial-scale=1\">";
+                $"<meta name=\"description\" content=\"Page is generated with ShinnySSG tool \"/>" +
+               $"<meta name = \"viewport\" content = \"width=device-width, initial-scale=1\">" +
+               $"<meta property=\"og: title\" content=\"{_title}\" />" +
+               $"<meta property = \"og:image\" content = \"https://pixabay.com/images/id-761653/\" />";
+
             _body += $"<h1>{_title}</h1>";
             for (var i = 1; i < paraps.Length; i++)
             {
@@ -49,6 +53,7 @@ namespace shinny_ssg
             // This matches anything between double asterisks
             string boldPattern = @"\*\*(.*?)\*\*";
             string boldReplacement = "<strong>$1</strong>";
+
 
             return Regex.Replace(line, boldPattern, boldReplacement);
         }
