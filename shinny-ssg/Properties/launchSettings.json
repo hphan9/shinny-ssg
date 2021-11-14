@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "shinny-ssg": {
-      "commandName": "Project",
-      "commandLineArgs": "-c C:\\Users\\khoit\\Desktop\\OSD600\\testConfig.json"
-    }
-  }
-}

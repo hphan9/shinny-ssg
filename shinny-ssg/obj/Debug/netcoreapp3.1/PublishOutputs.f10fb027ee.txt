@@ -1,7 +1,0 @@
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\shinny-ssg.exe
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\shinny-ssg.dll
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\shinny-ssg.deps.json
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\shinny-ssg.runtimeconfig.json
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\shinny-ssg.pdb
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\McMaster.Extensions.CommandLineUtils.dll
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\bin\Debug\netcoreapp3.1\publish\System.ComponentModel.Annotations.dll
