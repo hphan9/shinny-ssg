@@ -12,3 +12,8 @@
 
 ## Editor/IDE Integration
  Import the file ShinnySSG-2021-11-06.vssettings to Visual Studio.
+
+## Testing
+* Test genereated files and folders: 
+-> change the value of folder path variable in file ./shinny-ssgTests.src.GeneratorTests.cs with the value in your local machine
+-> Using Test Explores in Visual Studio to test the project 
