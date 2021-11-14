@@ -11,9 +11,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Test\**" />
+	  <EmbeddedResource Remove="Test\**" />
+	  <None Remove="Test\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="McMaster.Extensions.CommandLineUtils" Version="3.1.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all" Condition="$(MSBuildProjectExtension)=='.csproj'">
+		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118" PrivateAssets="all">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -28,7 +34,7 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="dotnet-format . -f&#xD;&#xA;dotnet-format -a warn  $(SolutionPath)" />
+		<Exec Command="dotnet-format . -f&#xD;&#xA;" />
 	</Target>
 
 </Project>

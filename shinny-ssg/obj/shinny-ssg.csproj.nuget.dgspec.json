@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg.csproj": {}
+    "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg\\shinny-ssg.csproj": {}
   },
   "projects": {
-    "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg.csproj": {
+    "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg\\shinny-ssg.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg.csproj",
+        "projectUniqueName": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg\\shinny-ssg.csproj",
         "projectName": "shinny-ssg",
-        "projectPath": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg.csproj",
+        "projectPath": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg\\shinny-ssg.csproj",
         "packagesPath": "C:\\Users\\khoit\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\obj\\",
+        "outputPath": "C:\\Users\\khoit\\Desktop\\OSD600\\shinny-ssg\\shinny-ssg\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
