@@ -7,6 +7,7 @@ namespace Shinny_ssg
 	using System;
 	using System.Collections.Generic;
 	using System.IO;
+	using System.Linq;
 	using System.Text;
 	using Newtonsoft.Json.Linq;
 	using shinny_ssg;
@@ -14,7 +15,7 @@ namespace Shinny_ssg
 		{
 		private CommandLineOptions _options;
 		private string cssUrl = @"https://cdn.jsdelivr.net/npm/water.css@2/out/water.css";
-		private string langAtr = "lang= \"en-CA\"";
+		private string langAtr = "en-CA";
 
 		public Generator(CommandLineOptions options)
 			{
@@ -36,16 +37,16 @@ namespace Shinny_ssg
 				string jsonString = File.ReadAllText(configName);
 				JObject jObj = JObject.Parse(jsonString);
 				input = jObj.ContainsKey("input") ? (string)jObj["input"] : string.Empty;
-				this.cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
-				this.langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
-				outputFolder = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
+				this.cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : cssUrl;
+				this.langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : langAtr;
+				outputFolder = jObj.ContainsKey("output") ? (string)jObj["output"] : outputFolder;
 				}
-			else if (inputValue != null)
+			else if (!String.IsNullOrEmpty(inputValue))
 				{
 				input = inputValue;
-				this.cssUrl = this._options.Stylesheet ?? default;
-				this.langAtr = this._options.LangAttr ?? default;
-				outputFolder = this._options.OutputPath ?? default;
+				this.cssUrl = String.IsNullOrEmpty(this._options.Stylesheet) ? cssUrl : this._options.Stylesheet;
+				this.langAtr = String.IsNullOrEmpty(this._options.LangAttr) ? langAtr : this._options.LangAttr;
+				outputFolder = String.IsNullOrEmpty(this._options.OutputPath) ? outputFolder : this._options.OutputPath;
 				}
 			else
 				{
@@ -98,7 +99,7 @@ namespace Shinny_ssg
 			DirectoryInfo dDestination = new DirectoryInfo(outputFolder);
 
 			// Getting only text files and markdown files
-			foreach (FileInfo f in dSource.EnumerateFiles("*.*", SearchOption.AllDirectories))
+			foreach (FileInfo f in dSource.EnumerateFiles("*.*", SearchOption.TopDirectoryOnly).Where(file => file.Name.EndsWith(".txt") || file.Name.EndsWith(".md")))
 				{
 				var src = Path.Combine(dSource.FullName, f.Name);
 				this.GenerateFile(src, outputFolder);

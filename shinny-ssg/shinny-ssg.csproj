@@ -11,9 +11,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Test\**" />
-	  <EmbeddedResource Remove="Test\**" />
-	  <None Remove="Test\**" />
+		<Compile Remove="Test\**" />
+		<EmbeddedResource Remove="Test\**" />
+		<None Remove="Test\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -23,6 +23,7 @@
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
+		<PackageReference Include="xunit" Version="2.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>

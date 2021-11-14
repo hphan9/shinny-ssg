@@ -24,7 +24,6 @@ C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\shin
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\McMaster.Extensions.CommandLineUtils.dll
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\System.ComponentModel.Annotations.dll
-C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.csproj.AssemblyReference.cache
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.AssemblyInfoInputs.cache
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.AssemblyInfo.cs
@@ -32,3 +31,8 @@ C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shin
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.dll
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.pdb
 C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.genruntimeconfig.cache
+C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\xunit.core.dll
+C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
+C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\bin\Debug\netcoreapp3.1\xunit.assert.dll
+C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssg\obj\Debug\netcoreapp3.1\shinny-ssg.csproj.AssemblyReference.cache
