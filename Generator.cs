@@ -3,85 +3,114 @@
 // </copyright>
 
 namespace Shinny_ssg
-    {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Text;
+	{
+	using System;
+	using System.Collections.Generic;
+	using System.IO;
+	using System.Text;
+	using Newtonsoft.Json.Linq;
+	using shinny_ssg;
+	public class Generator
+		{
+		private CommandLineOptions _options;
+		private string cssUrl = @"https://cdn.jsdelivr.net/npm/water.css@2/out/water.css";
+		private string langAtr = "lang= \"en-CA\"";
 
-    internal class Generator
-        {
-        private string input;
-        private string outputFolder;
-        private string cssUrl;
-        private string langAtr;
+		public Generator(CommandLineOptions options)
+			{
+			_options = options;
+			}
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Generator"/> class.
-        /// </summary>
-        /// <param name="input">In put.</param>
-        /// <param name="outputFolder"> out put folder.</param>
-        /// <param name="cssUrl">CSS url.</param>
-        /// <param name="langAtr">language attribute.</param>
-        public Generator(string input, string outputFolder, string cssUrl, string langAtr)
-            {
-            this.input = input;
-            this.outputFolder = outputFolder;
-            this.cssUrl = cssUrl;
-            this.langAtr = langAtr;
-            }
+		public int Run()
+			{
+			var configName = this._options.ConfigFile;
+			var inputValue = this._options.InputPath;
+			var result = 0;
+			var outputFolder = @".\dist";
 
-        public int Run()
-            {
-            if (File.Exists(this.input))
-                {
-                this.GenerateFile(this.input, this.outputFolder);
-                }
-            else if (Directory.Exists(this.input))
-                {
-                this.GenerateFolder(this.input, this.outputFolder);
-                }
-            else
-                {
-                Console.Error.WriteLine("The Input Path is not valid");
-                return -1;
-                }
+			// If config worked
+			var input = string.Empty;
+			if (configName != null && File.Exists(configName) && configName.EndsWith(".json"))
+				{
+				// start working with config File here
+				string jsonString = File.ReadAllText(configName);
+				JObject jObj = JObject.Parse(jsonString);
+				input = jObj.ContainsKey("input") ? (string)jObj["input"] : string.Empty;
+				this.cssUrl = jObj.ContainsKey("stylesheet") ? (string)jObj["stylesheet"] : default;
+				this.langAtr = jObj.ContainsKey("lang") ? (string)jObj["lang"] : default;
+				outputFolder = jObj.ContainsKey("output") ? (string)jObj["output"] : default;
+				}
+			else if (inputValue != null)
+				{
+				input = inputValue;
+				this.cssUrl = this._options.Stylesheet ?? default;
+				this.langAtr = this._options.LangAttr ?? default;
+				outputFolder = this._options.OutputPath ?? default;
+				}
+			else
+				{
+				throw new Exception("Either Input or Config File must have a valid value ");
+				}
 
-            return 0;
-            }
+			// It will delete all file even though the read or write process fail
+			if (Directory.Exists(outputFolder))
+				{
+				System.IO.DirectoryInfo di = new DirectoryInfo(outputFolder);
+				di.Delete(true);
+				}
 
-        private void GenerateFile(string src, string outputFolder)
-            {
-            var temp = new FileText();
-            if (temp.CreateFile(src, outputFolder, this.cssUrl, this.langAtr))
-                {
-                if (temp.SaveFile())
-                    {
-                    Console.WriteLine($" {Path.GetFileName(src)} --------- {Path.GetFullPath(outputFolder)} ");
-                    }
-                }
-            }
+			var newDir = Directory.CreateDirectory(outputFolder);
 
-        // recursive method
-        private void GenerateFolder(string parent, string outputFolder)
-            {
-            DirectoryInfo dSource = new DirectoryInfo(parent);
-            DirectoryInfo dDestination = new DirectoryInfo(outputFolder);
+			if (File.Exists(input))
+				{
+				this.GenerateFile(input, outputFolder);
+				}
+			else if (Directory.Exists(input))
+				{
+				this.GenerateFolder(input, outputFolder);
+				}
+			else
+				{
+				Console.Error.WriteLine("The Input Path is not valid");
+				return -1;
+				}
 
-            // Getting only text files and markdown files
-            foreach (FileInfo f in dSource.EnumerateFiles("*.*", SearchOption.AllDirectories))
-                {
-                var src = Path.Combine(dSource.FullName, f.Name);
-                this.GenerateFile(src, outputFolder);
-                }
+			return 0;
 
-            // check all the folder
-            foreach (DirectoryInfo subDir in dSource.GetDirectories())
-                {
-                var name = subDir.Name;
-                var newdir = dDestination.CreateSubdirectory($"{name}");
-                this.GenerateFolder(subDir.ToString(), newdir.FullName);
-                }
-            }
-        }
-    }
+			}
+
+		private void GenerateFile(string src, string outputFolder)
+			{
+			var temp = new FileText();
+			if (temp.CreateFile(src, outputFolder, this.cssUrl, this.langAtr))
+				{
+				if (temp.SaveFile())
+					{
+					Console.WriteLine($" {Path.GetFileName(src)} --------- {Path.GetFullPath(outputFolder)} ");
+					}
+				}
+			}
+
+		// recursive method
+		private void GenerateFolder(string parent, string outputFolder)
+			{
+			DirectoryInfo dSource = new DirectoryInfo(parent);
+			DirectoryInfo dDestination = new DirectoryInfo(outputFolder);
+
+			// Getting only text files and markdown files
+			foreach (FileInfo f in dSource.EnumerateFiles("*.*", SearchOption.AllDirectories))
+				{
+				var src = Path.Combine(dSource.FullName, f.Name);
+				this.GenerateFile(src, outputFolder);
+				}
+
+			// check all the folder
+			foreach (DirectoryInfo subDir in dSource.GetDirectories())
+				{
+				var name = subDir.Name;
+				var newdir = dDestination.CreateSubdirectory($"{name}");
+				this.GenerateFolder(subDir.ToString(), newdir.FullName);
+				}
+			}
+		}
+	}
