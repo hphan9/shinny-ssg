@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 5.0.x
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore shinny-ssg/shinny-ssg.sln
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build shinny-ssg/shinny-ssg.sln --no-restore shinny-ssg/shinny-ssg.sln
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test shinny-ssg/shinny-ssgTests/shinny-ssgTests.csproj --no-build --verbosity normal
