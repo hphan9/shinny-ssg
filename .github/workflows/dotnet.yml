@@ -20,6 +20,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore shinny-ssg/shinny-ssg.sln
     - name: Build
-      run: dotnet build shinny-ssg/shinny-ssg.sln --no-restore shinny-ssg/shinny-ssg.sln
+      run: dotnet build shinny-ssg/shinny-ssg.sln --no-restore 
     - name: Test
       run: dotnet test shinny-ssg/shinny-ssgTests/shinny-ssgTests.csproj --no-build --verbosity normal
