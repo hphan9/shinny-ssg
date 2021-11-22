@@ -67,7 +67,7 @@ sat down together to our breakfast one morning.";
             var cssUrl = @"https://cdn.jsdelivr.net/npm/water.css@2/out/water.css";
             var langAtr = "en-CA";
             var page = new Page(text, cssUrl, langAtr);
-            var expectedResult = @"<strong>Test</strong";
+            var expectedResult = @"<strong>Test</strong>";
             //Action
             var result = page.ParseMarkdownLine(text);
             //Assert
