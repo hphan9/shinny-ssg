@@ -113,5 +113,9 @@ namespace Shinny_ssg
 				this.GenerateFolder(subDir.ToString(), newdir.FullName);
 				}
 			}
+		public string getLangAtr()
+			{
+			return langAtr;
+			}
 		}
 	}

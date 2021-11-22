@@ -11,51 +11,19 @@ namespace Shinny_ssg.Tests
     public class GeneratorTests
     {
         [Fact()]
-        public void GeneratorTest_ConfigOption_InputFolderNotNested()
+        public void GeneratorTest_langAtr()
         {
             //Arrange
             var options = new CommandLineOptions();
             SetUpOptions(options, "ConfigFile", @"../../../testConfig.json");
-            var expectedOutputFolder = new DirectoryInfo(@"../../../../shinny-ssg/bin/Debug/netcoreapp3.1/dist");
-            var expectedInputFolder = new DirectoryInfo(@"../../../Sherlock-Holmes-Selected-Stories");
             var generator = new Generator(options);
-            //Action
-            generator.Run();
-            var inputFiles = expectedInputFolder.EnumerateFiles("*.*", SearchOption.AllDirectories).Where(file => file.Name.EndsWith(".txt") || file.Name.EndsWith(".md"));
-            var outputFiles = expectedOutputFolder.EnumerateFiles("*.*", SearchOption.AllDirectories);
-            //Assert
-            Assert.True(expectedOutputFolder.Exists, "OutputFolder must exist");
-            Assert.Equal<int>(inputFiles.Count(), outputFiles.Count());
-            foreach (FileInfo f in inputFiles)
-            {
-                var nameWithoutExtension = Path.GetFileNameWithoutExtension(f.FullName);
-                var result = outputFiles.Where(outputFile => Path.GetFileNameWithoutExtension(outputFile.FullName) == nameWithoutExtension).Select(outputFile => outputFile);
-                Assert.True(result?.First().Extension == ".html", "OutputFile must be Html");
-            }
-        }
 
-        [Fact()]
-        public void GeneratorTest_InputOption_InputFolderNotNested()
-        {
-            //Arrange
-            var options = new CommandLineOptions();
-            SetUpOptions(options, "InputPath", @"../../../Sherlock-Holmes-Selected-Stories");
-            var expectedOutputFolder = new DirectoryInfo(@"../../../../shinny-ssg/bin/Debug/netcoreapp3.1/dist");
-            var expectedInputFolder = new DirectoryInfo(@"../../../Sherlock-Holmes-Selected-Stories");
-            var generator = new Generator(options);
             //Action
             generator.Run();
-            var inputFiles = expectedInputFolder.EnumerateFiles("*.*", SearchOption.AllDirectories).Where(file => file.Name.EndsWith(".txt") || file.Name.EndsWith(".md"));
-            var outputFiles = expectedOutputFolder.EnumerateFiles("*.html*", SearchOption.AllDirectories);
+
             //Assert
-            Assert.True(expectedOutputFolder.Exists, "OutputFolder must exist");
-            Assert.Equal<int>(inputFiles.Count(), outputFiles.Count());
-            foreach (FileInfo f in inputFiles)
-            {
-                var nameWithoutExtension = Path.GetFileNameWithoutExtension(f.FullName);
-                var result = outputFiles.Where(outputFile => Path.GetFileNameWithoutExtension(outputFile.FullName) == nameWithoutExtension).Select(outputFile => outputFile);
-                Assert.True(result?.First().Extension == ".html", "OutputFile must be Html");
-            }
+            Assert.Equal("fr", generator.getLangAtr());
+
         }
 
         [Fact()]
