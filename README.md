@@ -11,6 +11,7 @@
 * In the command prompt run `shinny-ssg.exe -h` to see the options
 * The file will be generated in the `shinny-ssg\bin\Debug\netcoreapp3.1\dist` folder by default or in the destination folder if specified by user
 * If there is no error, the app exits with code 0, otherwhise it exits with code -1
+
 ### Command
 > shinny-ssg.exe -h 
 > 
@@ -43,5 +44,5 @@ https://hphan9.github.io/shinny-ssg.html
 MIT 
 
 ### Author 
-Emily Phan
+Emily Phan 
   
