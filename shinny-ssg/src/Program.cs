@@ -9,9 +9,9 @@ namespace Shinny_ssg
 	using McMaster.Extensions.CommandLineUtils;
 	using Newtonsoft.Json.Linq;
 	using shinny_ssg;
+
 	public class Program
 		{
-
 		private static int Main(string[] args)
 			{
 			try

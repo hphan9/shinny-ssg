@@ -10,6 +10,10 @@
 		<RunPostBuildEvent>Always</RunPostBuildEvent>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+	  <WarningLevel>5</WarningLevel>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<Compile Remove="Test\**" />
 		<EmbeddedResource Remove="Test\**" />
@@ -35,7 +39,7 @@
 	</ItemGroup>
 
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="dotnet-format . -f&#xD;&#xA;" />
+		<Exec Command="dotnet-format shinny-ssg.sln&#xD;&#xA;" />
 	</Target>
 
 </Project>

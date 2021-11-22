@@ -15,9 +15,9 @@ namespace Shinny_ssg.Tests
         {
             //Arrange
             var options = new CommandLineOptions();
-            SetUpOptions(options, "ConfigFile", @"C:\Users\khoit\Desktop\OSD600\shinny-ssg\shinny-ssgTests\testConfig.json");
-            var expectedOutputFolder = new DirectoryInfo(@"C:/Users/khoit/Desktop/OSD600/dist");
-            var expectedInputFolder = new DirectoryInfo(@"C:/Users/khoit/Desktop/OSD600/Sherlock-Holmes-Selected-Stories");
+            SetUpOptions(options, "ConfigFile", @"../../../testConfig.json");
+            var expectedOutputFolder = new DirectoryInfo(@"../../../../shinny-ssg/bin/Debug/netcoreapp3.1/dist");
+            var expectedInputFolder = new DirectoryInfo(@"../../../Sherlock-Holmes-Selected-Stories");
             var generator = new Generator(options);
             //Action
             generator.Run();
@@ -39,9 +39,9 @@ namespace Shinny_ssg.Tests
         {
             //Arrange
             var options = new CommandLineOptions();
-            SetUpOptions(options, "InputPath", @"C:/Users/khoit/Desktop/OSD600/Sherlock-Holmes-Selected-Stories");
-            var expectedOutputFolder = new DirectoryInfo(@"C:/Users/khoit/Desktop/OSD600/shinny-ssg/shinny-ssg/bin/Debug/netcoreapp3.1/dist");
-            var expectedInputFolder = new DirectoryInfo(@"C:/Users/khoit/Desktop/OSD600/Sherlock-Holmes-Selected-Stories");
+            SetUpOptions(options, "InputPath", @"../../../Sherlock-Holmes-Selected-Stories");
+            var expectedOutputFolder = new DirectoryInfo(@"../../../../shinny-ssg/bin/Debug/netcoreapp3.1/dist");
+            var expectedInputFolder = new DirectoryInfo(@"../../../Sherlock-Holmes-Selected-Stories");
             var generator = new Generator(options);
             //Action
             generator.Run();
