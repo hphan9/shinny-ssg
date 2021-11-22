@@ -42,7 +42,6 @@ namespace Shinny_ssg.Tests
         }
 
 
-
         [Fact()]
         public void GetPageTest()
         {
@@ -61,6 +60,19 @@ sat down together to our breakfast one morning.";
             Assert.Equal(expectedResult, result);
         }
 
+        [Fact()]
+        public void ParseMarkdownLineTest()
+        {
+            var text = @"**Test**";
+            var cssUrl = @"https://cdn.jsdelivr.net/npm/water.css@2/out/water.css";
+            var langAtr = "en-CA";
+            var page = new Page(text, cssUrl, langAtr);
+            var expectedResult = @"<strong>Test</strong";
+            //Action
+            var result = page.ParseMarkdownLine(text);
+            //Assert
+            Assert.Equal(expectedResult, result);
+        }
 
         private void SetUpOptions(CommandLineOptions options, string propertyName, object value)
         {
@@ -68,5 +80,7 @@ sat down together to our breakfast one morning.";
             var property = type.GetProperty(propertyName);
             property.SetValue(options, value);
         }
+
+
     }
 }
