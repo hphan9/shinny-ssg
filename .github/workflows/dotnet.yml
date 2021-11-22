@@ -24,4 +24,4 @@ jobs:
     - name: Build
       run: dotnet build shinny-ssg/shinny-ssg.sln --no-restore 
     - name: Test
-      run: dotnet test shinny-ssg/shinny-ssgTests/shinny-ssgTests.csproj --no-build --verbosity normal
+      run: dotnet test shinny-ssgTests --no-build --verbosity normal
