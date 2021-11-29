@@ -26,7 +26,6 @@ namespace Shinny_ssg
 			{
 			var configName = this._options.ConfigFile;
 			var inputValue = this._options.InputPath;
-			var result = 0;
 			var outputFolder = @".\dist";
 
 			// If config worked

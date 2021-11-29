@@ -6,18 +6,28 @@
 * give user the options to specify destination folder, language attribute for HTML files and/or stylesheet url link 
 
 ## How to use
+
+### Using source code
 * Download or clone the shinny-ssg folder to your local machine
 * Use command prompt to navigate to the folder netcoreapp3.1 in the shinny-ssg folder ( path `shinny-ssg\bin\Debug\netcoreapp3.1`)
 * In the command prompt run `shinny-ssg.exe -h` to see the options
 * The file will be generated in the `shinny-ssg\bin\Debug\netcoreapp3.1\dist` folder by default or in the destination folder if specified by user
 * If there is no error, the app exits with code 0, otherwhise it exits with code -1
 
-### Command
-> shinny-ssg.exe -h 
-> 
-> shinny-ssg.exe -i `<filePath>` 
+### Using Nuget package
+#### global
+> dotnet tool install --global shinny_ssg --version 1.0.1
 >
-> shinny-ssg.exe -i `<path>` -o `<folder path>` -s `<stylesheet link>`
+#### local
+> dotnet new tool-manifest # if you are setting up this repo
+> dotnet tool install --local shinny_ssg --version 1.0.1
+
+### Command
+> shinny-ssg -h 
+> 
+> shinny-ssg -i `<filePath>` 
+>
+> shinny-ssg -i `<path>` -o `<folder path>` -s `<stylesheet link>`
 
 Option	Function
  
